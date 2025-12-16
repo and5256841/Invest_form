@@ -484,6 +484,7 @@
         <div class="header">
             <h1>Estudios Epidemiologicos Observacionales</h1>
             <p>Plataforma de Aprendizaje</p>
+            <p style="font-size: 0.75rem; margin-top: 8px; color: #666;">Por: Andres Felipe Gonzalez Serna MD</p>
         </div>
 
         <!-- Login -->
@@ -546,6 +547,7 @@
         <div class="screen" id="screen-certificate">
             <div class="certificate-preview" id="certificate-preview">
                 <p style="font-size: 0.75rem;">PLATAFORMA DE ESTUDIOS EPIDEMIOLOGICOS</p>
+                <p style="font-size: 0.7rem; color: #666;">Andres Felipe Gonzalez Serna MD</p>
                 <h2>CERTIFICADO</h2>
                 <p>Certifica que</p>
                 <h3 id="cert-name"></h3>
@@ -925,6 +927,10 @@
             doc.setFontSize(14);
             doc.setTextColor(...azul);
             doc.text('PLATAFORMA DE ESTUDIOS EPIDEMIOLOGICOS', 148.5, 35, { align: 'center' });
+
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Andres Felipe Gonzalez Serna MD', 148.5, 43, { align: 'center' });
 
             doc.setFontSize(28);
             doc.setTextColor(...verde);
