@@ -1,0 +1,67 @@
+SYNAPSE.MD — ESTUDIOS EPIDEMIOLÓGICOS TRANSVERSALES
+Script para TTS | Duración: 8 minutos | ~1100 palabras
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 01 — HOOK + CONTEXTO**
+
+Los estudios transversales son probablemente el diseño epidemiológico más utilizado en la literatura médica. [pausa] Según una revisión publicada en el Journal of Clinical Medicine en 2024, representan cerca del cuarenta por ciento de todos los estudios observacionales publicados en revistas indexadas. ¿Por qué son tan populares? Porque son rápidos, económicos y nos permiten obtener una fotografía instantánea del estado de salud de una población en un momento determinado. Hoy vamos a revisar cómo diseñarlos correctamente, qué medidas utilizar y cuáles son los errores más frecuentes que debemos evitar.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 02 — DEFINICIÓN Y TIPOS**
+
+Un estudio transversal, también llamado estudio de prevalencia o de corte transversal, es un diseño observacional en el que medimos simultáneamente la exposición y el desenlace en una población definida, en un único punto en el tiempo. [pausa] Es como tomar una fotografía: capturamos quién está enfermo y quién está expuesto en ese preciso momento. Existen dos tipos principales. Los estudios transversales descriptivos buscan determinar la prevalencia de una enfermedad o condición en la población. Por ejemplo, cuántos pacientes con VIH en una clínica tienen hipertensión arterial. Los estudios transversales analíticos van más allá: buscan explorar asociaciones entre factores de exposición y desenlaces de salud. Sin embargo, debemos recordar que al medir ambas variables simultáneamente, no podemos establecer temporalidad ni causalidad directa.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 03 — DISEÑO Y MUESTREO**
+
+El diseño de un estudio transversal comienza con la definición clara de la población objetivo y los criterios de elegibilidad. [pausa] A diferencia de los estudios de cohorte donde seleccionamos por exposición, o los casos y controles donde seleccionamos por desenlace, aquí seleccionamos participantes únicamente según criterios de inclusión y exclusión predefinidos. El muestreo es crítico. Según las guías STROBE publicadas en 2007 y vigentes hasta hoy, debemos reportar claramente el método de selección de participantes. Existen dos categorías principales: el muestreo probabilístico, que incluye aleatorio simple, estratificado y por conglomerados; y el muestreo no probabilístico, como el muestreo por conveniencia. Los métodos probabilísticos son preferibles porque permiten generalizar los resultados a la población de referencia. El cálculo del tamaño muestral debe basarse en la prevalencia esperada del evento, el nivel de confianza deseado, generalmente noventa y cinco por ciento, y la precisión requerida.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 04 — MEDIDA PRINCIPAL: LA PREVALENCIA**
+
+La medida de frecuencia característica de los estudios transversales es la prevalencia. [pausa] Se define como la proporción de individuos que presentan la condición de interés en un momento específico, dividida entre el total de la población estudiada. Podemos hablar de prevalencia puntual cuando medimos en un día específico, o prevalencia de período cuando extendemos la medición a un lapso definido, por ejemplo, los últimos doce meses. También existen las encuestas transversales seriadas, donde repetimos la medición en la misma población en diferentes momentos para evaluar tendencias. Es fundamental entender que la prevalencia no es lo mismo que la incidencia. La prevalencia refleja tanto la aparición de nuevos casos como la duración de la enfermedad. En palabras simples: prevalencia es igual a incidencia multiplicada por duración promedio de la enfermedad. Por eso, enfermedades con alta letalidad pueden tener baja prevalencia aunque su incidencia sea alta.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 05 — MEDIDAS DE ASOCIACIÓN: RP vs OR**
+
+Aquí viene uno de los puntos más controversiales en epidemiología. [pausa] Para estudios transversales analíticos, tenemos dos opciones principales: la razón de prevalencias, conocida como RP o PR en inglés, y el odds ratio de prevalencia, conocido como POR. La razón de prevalencias compara directamente la prevalencia del desenlace entre expuestos versus no expuestos. Es más intuitiva y fácil de interpretar. El odds ratio de prevalencia compara los odds, no las proporciones. El problema es que cuando la prevalencia del desenlace supera el diez por ciento, el OR sobreestima significativamente la asociación real. [pausa] Revistas como el New England Journal of Medicine y el American Journal of Epidemiology han desalentado oficialmente el uso del OR cuando otras medidas son calculables. Sin embargo, la regresión logística, que estima OR, sigue siendo la técnica más utilizada por disponibilidad en software estadístico. Alternativas que estiman directamente la RP incluyen la regresión de Poisson con varianza robusta, la regresión log-binomial y la regresión de Cox con tiempo constante. Para enfermedades crónicas o exposiciones de larga duración, el POR puede ser apropiado. Para condiciones agudas, la RP es preferible.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 06 — FORTALEZAS DEL DISEÑO**
+
+Los estudios transversales tienen múltiples ventajas que explican su popularidad. [pausa] Primero, son rápidos de ejecutar porque no requieren seguimiento longitudinal. Segundo, son relativamente económicos comparados con estudios de cohorte. Tercero, permiten estudiar múltiples exposiciones y desenlaces simultáneamente en la misma población. Cuarto, son ideales para estimar la carga de enfermedad y planificar recursos de salud. Quinto, pueden generar hipótesis que luego serán probadas con diseños más robustos. Y sexto, son útiles como línea de base antes de iniciar un estudio de cohorte o un ensayo clínico. Para condiciones crónicas de larga duración, donde la prevalencia refleja adecuadamente la frecuencia de enfermedad, los estudios transversales pueden ser suficientemente informativos para la toma de decisiones en salud pública.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 07 — LIMITACIONES Y SESGOS**
+
+Ningún diseño es perfecto, y los estudios transversales tienen limitaciones importantes. [pausa] La principal es la imposibilidad de establecer temporalidad. Como medimos exposición y desenlace simultáneamente, no podemos saber qué ocurrió primero. Esto limita severamente las inferencias causales. El sesgo de supervivencia es otro problema crítico. Solo incluimos casos prevalentes, es decir, personas que han sobrevivido con la enfermedad hasta el momento del estudio. Esto puede distorsionar las asociaciones si la exposición afecta la supervivencia. El sesgo de selección ocurre cuando los participantes del estudio difieren sistemáticamente de la población objetivo. Una baja tasa de respuesta puede comprometer la validez externa. El sesgo de recuerdo afecta particularmente las exposiciones medidas retrospectivamente mediante cuestionarios. Los participantes con la enfermedad pueden recordar diferente sus exposiciones pasadas. Finalmente, los estudios transversales no permiten calcular incidencia ni riesgo en el sentido estricto, porque no seguimos a personas sanas para ver cuántas desarrollan la enfermedad.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 08 — STROBE Y CALIDAD DEL REPORTE**
+
+Para mejorar la calidad del reporte de estudios transversales, disponemos de la guía STROBE, acrónimo de Strengthening the Reporting of Observational Studies in Epidemiology. [pausa] Esta guía, desarrollada por epidemiólogos, metodólogos y editores de revistas, contiene veintidós ítems que deben incluirse en la publicación de un estudio observacional. Dieciocho ítems son comunes a todos los diseños observacionales, y cuatro son específicos según el tipo de estudio. Para estudios transversales, debemos reportar claramente los criterios de elegibilidad, las fuentes y métodos de selección de participantes, describir cómo se definieron y midieron todas las variables, explicar el manejo de variables cuantitativas, y reportar el número de individuos en cada etapa del estudio. STROBE no es una herramienta para evaluar calidad metodológica, sino una guía para reportar transparentemente lo que se hizo, lo que se encontró y sus limitaciones.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 09 — MENSAJES CLAVE**
+
+Cerremos con los puntos esenciales. [pausa] Primero: los estudios transversales son la fotografía del estado de salud de una población; miden prevalencia, no incidencia. Segundo: pueden ser descriptivos para estimar prevalencia, o analíticos para explorar asociaciones. Tercero: para desenlaces con prevalencia mayor al diez por ciento, prefiera la razón de prevalencias sobre el odds ratio, utilizando regresión de Poisson con varianza robusta o regresión log-binomial. Cuarto: sus principales limitaciones son la imposibilidad de establecer temporalidad, el sesgo de supervivencia y el sesgo de selección. Y quinto: utilice la guía STROBE para reportar sus estudios de manera transparente y completa. Los estudios transversales, bien diseñados y correctamente interpretados, siguen siendo una herramienta valiosa para la investigación epidemiológica y la salud pública. [pausa] Gracias por acompañarnos en SYNAPSE.MD.
+
+═══════════════════════════════════════════════════════════════
+
+FUENTES PRINCIPALES:
+• STROBE Statement (von Elm et al., 2007) - strobe-statement.org
+• Journal of Clinical Medicine 2024 - Methodological Considerations for Observational Studies
+• CHEST 2020 - Cross-Sectional Studies Review
+• BMC Medical Research Methodology - Prevalence Ratio Alternatives
+• Springer 2024 - Statistical Approaches for Epidemiology
+
+Palabras totales: ~1,105

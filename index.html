@@ -791,14 +791,20 @@
                     Vea el video completo antes del test
                 </div>
 
-                <div class="video-container" id="video-wrapper">
-                    <iframe
-                        id="youtube-player"
-                        src="https://www.youtube.com/embed/${currentModule.videoId}?rel=0&playsinline=1&enablejsapi=1"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
+                <div class="video-thumbnail" onclick="openVideo('${currentModule.videoId}')" style="position: relative; cursor: pointer; border-radius: 10px; overflow: hidden; background: #000;">
+                    <img src="https://img.youtube.com/vi/${currentModule.videoId}/maxresdefault.jpg"
+                         onerror="this.src='https://img.youtube.com/vi/${currentModule.videoId}/hqdefault.jpg'"
+                         style="width: 100%; display: block;" alt="Video thumbnail">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; background: rgba(255,0,0,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
+                    </div>
+                    <p style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; text-align: center; padding: 10px; margin: 0; font-size: 0.9rem;">
+                        Click para ver el video
+                    </p>
+                </div>
+
+                <div id="video-container-embed" class="video-container" style="display: none;">
+                    <iframe id="youtube-player" allowfullscreen></iframe>
                 </div>
 
                 <div class="quiz-container" id="quiz-container">
@@ -967,6 +973,12 @@
             doc.text('Fecha de emision: ' + fecha, 148.5, 185, { align: 'center' });
 
             doc.save('Certificado_' + userData.name.replace(/\s+/g, '_') + '.pdf');
+        }
+
+        // Open video function
+        function openVideo(videoId) {
+            // Abre el video en una nueva pestaña de YouTube
+            window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
         }
 
         // Enter key support

@@ -1,0 +1,49 @@
+SYNAPSE.MD — ESTUDIOS DE INTERVENCIÓN: EL ENSAYO CLÍNICO ALEATORIZADO
+Duración: 8 minutos (~1,100 palabras)
+Fuentes: CONSORT 2010, FDA Clinical Research, CHEST 2020, J Clin Epidemiol 2024
+
+═══════════════════════════════════════════════════════════════════════════════
+
+**SLIDE 01 — INTRODUCCIÓN**
+
+En mil novecientos cuarenta y ocho, el British Medical Research Council publicó el primer ensayo clínico aleatorizado moderno: estreptomicina para tuberculosis. [pausa] Ese estudio cambió la medicina para siempre. Hoy, los ensayos clínicos aleatorizados o RCT por sus siglas en inglés, ocupan la cúspide de la pirámide de evidencia. Según CONSORT 2010, son el estándar de oro para establecer causalidad entre una intervención y un desenlace. [pausa] En esta presentación exploraremos el diseño, las fases, las medidas de efecto y los elementos críticos que hacen válido un ensayo clínico. Información esencial para interpretar la literatura y para diseñar investigación de calidad.
+
+**SLIDE 02 — DEFINICIÓN Y CARACTERÍSTICAS**
+
+Un ensayo clínico aleatorizado es un estudio experimental prospectivo donde los participantes son asignados al azar a recibir una intervención experimental o un control. [pausa] La palabra clave es "aleatorizado". La aleatorización distribuye factores de confusión conocidos y desconocidos de manera equilibrada entre los grupos, permitiendo atribuir diferencias en los desenlaces únicamente a la intervención. [pausa] Las características definitorias son tres: primero, asignación aleatoria; segundo, intervención controlada por el investigador; y tercero, seguimiento prospectivo de los desenlaces. A diferencia de los estudios observacionales, aquí el investigador manipula activamente la exposición, lo que permite inferir causalidad cuando el diseño es riguroso.
+
+**SLIDE 03 — FASES DE DESARROLLO CLÍNICO**
+
+El desarrollo de un fármaco sigue cuatro fases secuenciales. [pausa] La Fase uno evalúa seguridad y farmacocinética en veinte a cien voluntarios sanos. El objetivo es determinar la dosis máxima tolerada y los efectos adversos iniciales. Aproximadamente setenta por ciento de los compuestos pasan esta fase. [pausa] La Fase dos, llamada prueba de concepto, estudia eficacia preliminar en cien a trescientos pacientes con la enfermedad. Se subdivide en dos A, estudios piloto, y dos B, estudios de dosis-respuesta. Solo treinta y tres por ciento avanza a la siguiente fase. [pausa] La Fase tres son los estudios pivotales: ensayos multicéntricos con cientos a miles de pacientes que confirman eficacia y seguridad para obtener aprobación regulatoria. [pausa] Finalmente, la Fase cuatro es vigilancia post-comercialización. Detecta efectos adversos raros que ocurren en menos de uno en tres mil pacientes, imposibles de identificar en las fases previas.
+
+**SLIDE 04 — ALEATORIZACIÓN**
+
+La aleatorización es el corazón del RCT. Existen varios métodos. [pausa] La aleatorización simple es como lanzar una moneda para cada participante: impredecible pero puede generar desbalances en muestras pequeñas. [pausa] La aleatorización en bloques garantiza que cada bloque, por ejemplo de cuatro u ocho participantes, contenga números iguales en cada grupo. Esto asegura balance temporal, pero si el tamaño del bloque es conocido, puede predecirse la última asignación. [pausa] La aleatorización estratificada divide primero a los participantes por variables pronósticas importantes como edad, sexo o severidad, y luego aleatoriza dentro de cada estrato. Esto es particularmente útil cuando factores conocidos afectan el desenlace. [pausa] La aleatorización por conglomerados asigna grupos enteros, como hospitales o comunidades, en lugar de individuos. Es necesaria cuando la intervención se aplica a nivel grupal, como programas educativos o políticas de salud.
+
+**SLIDE 05 — OCULTAMIENTO Y CEGAMIENTO**
+
+Dos conceptos frecuentemente confundidos pero distintos. [pausa] El ocultamiento de la asignación, o allocation concealment, protege la secuencia de aleatorización antes de que el participante ingrese al estudio. Previene el sesgo de selección. [pausa] Métodos adecuados incluyen sobres opacos sellados numerados secuencialmente, conocidos como SNOSE, aleatorización centralizada por teléfono, o control farmacéutico. Métodos inadecuados son alternar por día de la semana o usar el número de historia clínica. [pausa] El cegamiento o enmascaramiento ocurre después de la asignación. Simple ciego significa que el participante desconoce su grupo. Doble ciego significa que participante e investigador desconocen la asignación. Triple ciego añade al analista estadístico. [pausa] El cegamiento previene el sesgo de desempeño y el sesgo de detección. No siempre es posible, especialmente en intervenciones quirúrgicas, pero cuando es factible, es fundamental.
+
+**SLIDE 06 — MEDIDAS DE EFECTO: RRR, ARR Y NNT**
+
+Interpretar correctamente los resultados requiere entender tres medidas fundamentales. [pausa] La Reducción del Riesgo Relativo o RRR expresa qué proporción del riesgo basal se elimina con el tratamiento. Se calcula como la diferencia de riesgos dividida por el riesgo del grupo control. Un RRR del cincuenta por ciento suena impresionante, pero puede ser engañoso sin contexto. [pausa] La Reducción del Riesgo Absoluto o ARR es la diferencia simple entre las tasas de eventos. Si el control tiene veinte por ciento de eventos y el tratamiento diez por ciento, el ARR es diez por ciento. [pausa] El Número Necesario a Tratar o NNT es el recíproco del ARR: cuántos pacientes deben tratarse para prevenir un evento adverso. En nuestro ejemplo, NNT igual a diez. [pausa] Aquí está la trampa: un RRR del cincuenta por ciento puede representar un ARR del cuarenta por ciento, efecto enorme, o del cero punto uno por ciento, clínicamente irrelevante. CONSORT 2010 recomienda reportar ambas medidas. Los médicos sobreestiman la eficacia cuando solo ven medidas relativas.
+
+**SLIDE 07 — TIPOS DE DISEÑO**
+
+Más allá del diseño paralelo clásico, existen variantes importantes. [pausa] El diseño factorial evalúa dos o más intervenciones simultáneamente, permitiendo estudiar interacciones. [pausa] El diseño cruzado asigna cada participante a recibir ambos tratamientos en secuencia diferente, útil para condiciones crónicas estables. Requiere período de lavado entre tratamientos. [pausa] Los estudios de superioridad buscan demostrar que el nuevo tratamiento es mejor que el control. Los de no inferioridad buscan demostrar que no es peor dentro de un margen predefinido, apropiados cuando el nuevo tratamiento ofrece otras ventajas como menor costo o mejor tolerabilidad. Los de equivalencia buscan demostrar que ambos tratamientos son similares dentro de márgenes aceptables. [pausa] Los diseños adaptativos permiten modificaciones preespecificadas basadas en análisis interinos, como ajustar tamaño muestral o eliminar brazos ineficaces, aumentando eficiencia sin comprometer validez.
+
+**SLIDE 08 — SESGOS Y LIMITACIONES**
+
+Incluso los RCT bien diseñados tienen limitaciones. [pausa] El sesgo de selección ocurre si la aleatorización o el ocultamiento fallan. El sesgo de desempeño surge cuando el conocimiento de la asignación afecta el cuidado recibido. El sesgo de detección ocurre cuando el evaluador conoce la asignación y esto influye en la medición del desenlace. El sesgo de desgaste aparece cuando las pérdidas al seguimiento son sistemáticamente diferentes entre grupos. [pausa] Además, los RCT tienen validez externa limitada. Los criterios de inclusión estrictos pueden excluir poblaciones relevantes como ancianos, embarazadas o pacientes con comorbilidades. Lo que funciona en el ensayo controlado puede no funcionar igual en la práctica clínica real.
+
+**SLIDE 09 — CONSORT Y REPORTE**
+
+CONSORT 2010, acrónimo de Consolidated Standards of Reporting Trials, es la guía estándar para reportar ensayos clínicos. [pausa] Incluye una lista de verificación de veinticinco ítems y un diagrama de flujo que documenta el paso de participantes por cada fase: reclutamiento, asignación, seguimiento y análisis. [pausa] Elementos críticos incluyen: descripción del método de aleatorización y ocultamiento, quién estuvo cegado, análisis por intención de tratar, y reporte de efectos adversos. [pausa] Más de cuatrocientas revistas médicas exigen adherencia a CONSORT. Su uso ha mejorado la calidad del reporte, aunque muchos ensayos aún presentan deficiencias metodológicas.
+
+**SLIDE 10 — MENSAJES CLAVE**
+
+Cerremos con cinco puntos fundamentales. [pausa] Primero, el RCT es el estándar de oro para establecer causalidad porque la aleatorización controla confusores conocidos y desconocidos. [pausa] Segundo, el desarrollo farmacéutico sigue cuatro fases: seguridad, prueba de concepto, eficacia confirmatoria y vigilancia post-comercialización. [pausa] Tercero, distingue ocultamiento de la asignación, que previene sesgo de selección antes de la aleatorización, del cegamiento, que previene sesgos de desempeño y detección después de ella. [pausa] Cuarto, interpreta siempre las medidas absolutas: el ARR y el NNT dan la magnitud real del efecto, mientras el RRR puede magnificar beneficios modestos. [pausa] Y quinto, reporta según CONSORT: transparencia metodológica es esencial para que otros evalúen la validez de tus hallazgos. [pausa] El ensayo clínico aleatorizado no es perfecto, pero sigue siendo nuestra mejor herramienta para generar evidencia confiable que transforme la práctica clínica.
+
+═══════════════════════════════════════════════════════════════════════════════
+FIN DEL SCRIPT — SYNAPSE.MD
+Palabras aproximadas: 1,095

@@ -1,0 +1,74 @@
+SYNAPSE.MD — ESTUDIOS DE CASOS Y CONTROLES
+Script para TTS | Duración: 8 minutos | ~1100 palabras
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 01 — HOOK + CONTEXTO**
+
+En 1950, Richard Doll y Austin Bradford Hill publicaron uno de los estudios más influyentes en la historia de la epidemiología: demostraron la asociación entre el tabaquismo y el cáncer de pulmón utilizando un diseño de casos y controles. [pausa] Este diseño, que parte de la enfermedad para buscar hacia atrás las exposiciones, revolucionó nuestra capacidad de investigar enfermedades raras y brotes epidémicos de forma rápida y económica. Hoy revisaremos cómo diseñar correctamente un estudio de casos y controles, cómo interpretar el odds ratio, cuándo podemos aproximarlo al riesgo relativo, y cuáles son los sesgos que debemos evitar. Según el Journal of Clinical Medicine 2024, los errores metodológicos en este diseño siguen siendo frecuentes, así que prestemos atención.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 02 — DEFINICIÓN Y LÓGICA**
+
+Un estudio de casos y controles es un estudio observacional analítico en el que seleccionamos participantes según su estado de desenlace. [pausa] Los casos son personas que tienen la enfermedad o condición de interés; los controles son personas que no la tienen. A partir de esta selección, investigamos retrospectivamente la exposición a factores de riesgo. La lógica es inversa a los estudios de cohorte: en lugar de partir de la exposición y esperar a ver quién enferma, partimos de la enfermedad y miramos hacia atrás para ver quién estuvo expuesto. Por eso se dice que los estudios de casos y controles tienen una direccionalidad "hacia atrás" o retrospectiva. Esto los hace particularmente útiles para investigar enfermedades raras o con largos períodos de latencia, donde un estudio de cohorte sería impracticable por el tiempo y costo requerido.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 03 — SELECCIÓN DE CASOS**
+
+La selección correcta de casos es fundamental. [pausa] Debemos definir los casos de manera específica y estandarizada, utilizando criterios diagnósticos claros. Según Wacholder y colaboradores en sus clásicos artículos del American Journal of Epidemiology, los casos pueden provenir de registros hospitalarios, registros de enfermedades como los de cáncer, programas de tamizaje poblacional o cohortes previamente establecidas. Es preferible utilizar casos incidentes, es decir, recién diagnosticados, en lugar de casos prevalentes. ¿Por qué? Porque los casos incidentes recuerdan mejor sus exposiciones pasadas y permiten establecer más claramente la secuencia temporal entre exposición y enfermedad. Los casos prevalentes han sobrevivido con la enfermedad un tiempo variable, lo que puede introducir sesgo de supervivencia. Además, es esencial que los casos sean representativos de todas las personas con la enfermedad en la población de estudio.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 04 — SELECCIÓN DE CONTROLES**
+
+Los controles son quizás el aspecto más crítico y más difícil de este diseño. [pausa] El principio fundamental es que los controles deben provenir de la misma base poblacional que generó los casos, lo que llamamos la "base del estudio". Deben haber tenido la misma oportunidad de exposición que los casos. Podemos seleccionar controles de la población general, de pacientes hospitalarios con otras condiciones, o de amigos y familiares de los casos. Cada fuente tiene ventajas y limitaciones. Los controles hospitalarios son más fáciles de reclutar pero pueden tener exposiciones atípicas debido a sus propias enfermedades. Los controles poblacionales son más representativos pero más costosos de reclutar y pueden tener menores tasas de respuesta. Una estrategia común es aumentar el número de controles por caso, típicamente dos a cuatro controles por cada caso, lo que incrementa el poder estadístico del estudio sin necesidad de más casos.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 05 — EL ODDS RATIO**
+
+La medida de asociación característica de los estudios de casos y controles es el odds ratio, abreviado OR. [pausa] El OR compara los odds de exposición entre casos versus los odds de exposición entre controles. Matemáticamente se calcula como a por d dividido entre b por c en la tabla dos por dos. Si el OR es igual a uno, no hay asociación entre exposición y enfermedad. Si es mayor a uno, indica asociación positiva: la exposición aumenta los odds de enfermedad. Si es menor a uno, indica asociación protectora. Por ejemplo, un OR de cuatro para tabaquismo y cáncer de pulmón significa que los casos de cáncer tienen cuatro veces los odds de haber sido fumadores comparados con los controles. [pausa] Es crucial entender que el OR mide odds, no riesgo ni probabilidad directamente. Esta distinción es importante para la interpretación correcta.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 06 — EL SUPUESTO DE ENFERMEDAD RARA**
+
+¿Cuándo puede el OR aproximar al riesgo relativo? [pausa] Jerome Cornfield demostró que cuando la enfermedad es rara en la población, el OR se aproxima matemáticamente al riesgo relativo. Este es el famoso "supuesto de enfermedad rara" o rare disease assumption. Según Greenland y otros autores, si la prevalencia de la enfermedad es menor al diez por ciento, podemos considerar que OR aproxima a RR. Sin embargo, hay un matiz importante que publicaciones recientes en el American Journal of Epidemiology han enfatizado: lo que el OR estima depende de cómo seleccionamos los controles. Si seleccionamos controles del tiempo-persona en riesgo, el OR estima la razón de tasas de incidencia. Si seleccionamos de la población en riesgo al inicio, estima el riesgo relativo. Si seleccionamos supervivientes al final del seguimiento, estima el odds de enfermedad. Esta distinción, aunque técnica, es fundamental para la interpretación correcta de los resultados.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 07 — PAREAMIENTO O MATCHING**
+
+El pareamiento o matching es una técnica común en estudios de casos y controles. [pausa] Consiste en seleccionar controles que sean similares a los casos en ciertas características como edad, sexo o tiempo de hospitalización. El propósito es controlar confusión y aumentar la eficiencia estadística. Sin embargo, hay riesgos. El sobre-pareamiento ocurre cuando pareamos por variables que están en el camino causal entre exposición y enfermedad, o por variables asociadas a la exposición pero no a la enfermedad. Esto puede sesgar los resultados hacia el valor nulo. La regla práctica es parear solo por confusores conocidos y fuertes. Además, cuando pareamos, debemos usar análisis estadísticos apropiados como la regresión logística condicional o el test de McNemar, que respetan la estructura pareada de los datos. Un error frecuente es ignorar el pareamiento en el análisis, lo que puede producir estimaciones sesgadas.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 08 — VARIANTES DEL DISEÑO**
+
+Existen variantes importantes del diseño clásico. [pausa] El estudio de casos y controles anidado se realiza dentro de una cohorte previamente establecida. Los casos se identifican conforme ocurren durante el seguimiento, y para cada caso se seleccionan controles del pool de individuos en riesgo en ese momento específico. Este diseño reduce dramáticamente el sesgo de selección y el sesgo de recuerdo, ya que las exposiciones fueron medidas antes del desenlace. Es particularmente útil cuando tenemos muestras biológicas almacenadas costosas de analizar. El estudio caso-cohorte es similar, pero utiliza una subcohorte aleatoria como grupo de comparación para todos los casos. Su ventaja es que la misma subcohorte puede usarse para estudiar múltiples desenlaces. Ambos diseños ofrecen reducciones impresionantes en costos con pérdida mínima de eficiencia estadística respecto al análisis de la cohorte completa.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 09 — SESGOS PRINCIPALES**
+
+Los estudios de casos y controles son susceptibles a sesgos específicos. [pausa] El sesgo de selección ocurre cuando casos o controles no son representativos de la población objetivo. Por ejemplo, si utilizamos solo casos hospitalizados, podemos sobrerrepresentar casos severos. El sesgo de recuerdo es particularmente problemático: las personas con enfermedad tienden a recordar y reportar sus exposiciones pasadas de manera diferente a las personas sanas, especialmente si conocen la hipótesis del estudio. El sesgo del entrevistador ocurre cuando quien recolecta datos conoce el estado de caso o control y busca exposiciones de manera diferencial. Para minimizarlo, se recomienda cegar al entrevistador respecto al estado de enfermedad. Finalmente, la confusión es un problema en cualquier estudio observacional y debe controlarse mediante diseño, como el pareamiento, o mediante análisis multivariado.
+
+═══════════════════════════════════════════════════════════════
+
+**SLIDE 10 — MENSAJES CLAVE**
+
+Cerremos con los puntos esenciales. [pausa] Primero: los estudios de casos y controles parten de la enfermedad y buscan exposiciones hacia atrás. Son ideales para enfermedades raras, brotes y cuando hay largos períodos de latencia. Segundo: la selección de controles es crítica; deben provenir de la misma base poblacional que los casos. Tercero: el OR es la medida de asociación; aproxima al riesgo relativo cuando la enfermedad es rara, menor al diez por ciento, pero su interpretación exacta depende del método de muestreo de controles. Cuarto: los diseños anidados y caso-cohorte reducen sesgos al conducirse dentro de cohortes establecidas. Quinto: los sesgos principales son selección, recuerdo y confusión; deben abordarse desde el diseño. Y sexto: reporte sus estudios siguiendo la guía STROBE para estudios de casos y controles. Gracias por acompañarnos en SYNAPSE.MD.
+
+═══════════════════════════════════════════════════════════════
+
+FUENTES PRINCIPALES:
+• Doll R, Hill AB (1950) - Estudio clásico tabaco-cáncer
+• Wacholder et al. Am J Epidemiol - Selección de casos y controles
+• STROBE Statement - Guía de reporte
+• J Clin Med 2024 - Errores metodológicos comunes
+• CHEST 2020 - Case-Control Studies Overview
+• Am J Epidemiol 2021 - What does OR estimate?
+
+Palabras totales: ~1,095
