@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Estudios Epidemiologicos - Sanitas</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --sanitas-azul: #003366;
+            --sanitas-azul-claro: #004d99;
+            --sanitas-verde: #00A19A;
+            --sanitas-verde-claro: #00C4BC;
+            --sanitas-gris: #f5f5f5;
+            --sanitas-blanco: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, var(--sanitas-azul) 0%, var(--sanitas-azul-claro) 100%);
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        html {
+            height: -webkit-fill-available;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 12px;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--sanitas-blanco);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: var(--sanitas-azul);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            color: var(--sanitas-verde);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            background: var(--sanitas-blanco);
+            padding: 24px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.12);
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Elements */
+        .login-box h2 {
+            color: var(--sanitas-azul);
+            margin-bottom: 24px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--sanitas-azul);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px; /* Prevents zoom on iOS */
+            transition: border-color 0.3s;
+            background: #fff;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--sanitas-verde);
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            background: var(--sanitas-verde);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .btn:hover, .btn:active {
+            background: var(--sanitas-verde-claro);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--sanitas-azul);
+        }
+
+        .btn-secondary:hover, .btn-secondary:active {
+            background: var(--sanitas-azul-claro);
+        }
+
+        .btn-small {
+            width: auto;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Progress */
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sanitas-verde), var(--sanitas-verde-claro));
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 8px;
+            color: var(--sanitas-azul);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Module Cards */
+        .module-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .module-card.completed {
+            border-color: var(--sanitas-verde);
+            background: rgba(0, 161, 154, 0.05);
+        }
+
+        .module-card.active {
+            border-color: var(--sanitas-azul);
+            background: rgba(0, 51, 102, 0.02);
+        }
+
+        .module-card.locked {
+            opacity: 0.5;
+        }
+
+        .module-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .module-title {
+            color: var(--sanitas-azul);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .module-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            width: fit-content;
+        }
+
+        .status-pending { background: #f0f0f0; color: #666; }
+        .status-completed { background: var(--sanitas-verde); color: white; }
+        .status-current { background: var(--sanitas-azul); color: white; }
+
+        .module-desc {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        /* Video */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 16px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-instruction {
+            text-align: center;
+            padding: 12px;
+            background: var(--sanitas-gris);
+            border-radius: 8px;
+            color: var(--sanitas-azul);
+            font-size: 0.9rem;
+        }
+
+        /* Quiz */
+        .quiz-container h3 {
+            color: var(--sanitas-azul);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+
+        .quiz-question {
+            background: var(--sanitas-gris);
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-question h4 {
+            color: var(--sanitas-azul);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .quiz-option {
+            display: block;
+            padding: 14px;
+            margin-bottom: 8px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .quiz-option:active {
+            transform: scale(0.98);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--sanitas-azul);
+            background: rgba(0, 51, 102, 0.05);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--sanitas-verde);
+            background: rgba(0, 161, 154, 0.15);
+        }
+
+        .quiz-option.incorrect {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 16px 0;
+        }
+
+        .quiz-result h3 {
+            margin-bottom: 8px;
+        }
+
+        .quiz-result.passed {
+            background: rgba(0, 161, 154, 0.1);
+            color: var(--sanitas-verde);
+        }
+
+        .quiz-result.failed {
+            background: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+
+        /* Welcome */
+        .welcome-msg {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-msg h2 {
+            color: var(--sanitas-azul);
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .welcome-msg p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Certificate */
+        .certificate-preview {
+            border: 3px solid var(--sanitas-azul);
+            padding: 24px 16px;
+            text-align: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            margin-bottom: 20px;
+        }
+
+        .certificate-preview h2 {
+            color: var(--sanitas-azul);
+            font-size: 1.2rem;
+            margin: 8px 0;
+        }
+
+        .certificate-preview h3 {
+            color: var(--sanitas-verde);
+            margin: 12px 0;
+            font-size: 1.1rem;
+        }
+
+        .certificate-preview p {
+            color: #555;
+            font-size: 0.85rem;
+            margin: 6px 0;
+        }
+
+        .certificate-details {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 2px solid #e0e0e0;
+            text-align: left;
+        }
+
+        .certificate-details p {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .certificate-details ul {
+            list-style: none;
+            padding: 0 8px;
+        }
+
+        .certificate-details li {
+            padding: 6px 0;
+            color: var(--sanitas-azul);
+            font-size: 0.85rem;
+        }
+
+        .certificate-details li::before {
+            content: "\2713";
+            color: var(--sanitas-verde);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Button containers */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-buttons {
+            margin-top: 20px;
+        }
+
+        /* Module screen title */
+        .module-screen-title {
+            color: var(--sanitas-azul);
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        /* Scrollable quiz on mobile */
+        @media (max-height: 700px) {
+            .quiz-container {
+                max-height: 50vh;
+                overflow-y: auto;
+                padding-right: 5px;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 360px) {
+            .container {
+                padding: 8px;
+            }
+
+            .screen {
+                padding: 16px 14px;
+            }
+
+            .header h1 {
+                font-size: 1rem;
+            }
+
+            .module-title {
+                font-size: 0.95rem;
+            }
+
+            .quiz-option {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Estudios Epidemiologicos Observacionales</h1>
+            <p>Fundacion Universitaria Sanitas</p>
+        </div>
+
+        <!-- Login -->
+        <div class="screen active" id="screen-login">
+            <div class="login-box">
+                <h2>Acceso a la Plataforma</h2>
+                <div class="form-group">
+                    <label for="access-code">Clave de Acceso</label>
+                    <input type="password" id="access-code" placeholder="Ingrese la clave" autocomplete="off">
+                </div>
+                <button class="btn" onclick="validateAccess()">Ingresar</button>
+                <p class="error-msg" id="login-error"></p>
+            </div>
+        </div>
+
+        <!-- Register -->
+        <div class="screen" id="screen-register">
+            <div class="login-box">
+                <h2>Registro</h2>
+                <div class="form-group">
+                    <label for="user-name">Nombre Completo</label>
+                    <input type="text" id="user-name" placeholder="Su nombre completo" autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="user-doc">Numero de Documento</label>
+                    <input type="text" id="user-doc" placeholder="Su documento" autocomplete="off" inputmode="numeric">
+                </div>
+                <button class="btn" onclick="registerUser()">Comenzar</button>
+                <p class="error-msg" id="register-error"></p>
+            </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="screen" id="screen-dashboard">
+            <div class="welcome-msg">
+                <h2>Hola, <span id="display-name"></span></h2>
+                <p>Complete los 4 modulos para su certificado</p>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+                <p class="progress-text"><span id="progress-text">0</span>/4 completados</p>
+            </div>
+
+            <div id="modules-list"></div>
+
+            <div id="certificate-btn-container" style="display: none; margin-top: 16px;">
+                <button class="btn" onclick="showCertificate()">Obtener Certificado</button>
+            </div>
+        </div>
+
+        <!-- Module -->
+        <div class="screen" id="screen-module">
+            <div id="module-content"></div>
+        </div>
+
+        <!-- Certificate -->
+        <div class="screen" id="screen-certificate">
+            <div class="certificate-preview" id="certificate-preview">
+                <p style="font-size: 0.75rem;">FUNDACION UNIVERSITARIA SANITAS</p>
+                <h2>CERTIFICADO</h2>
+                <p>Certifica que</p>
+                <h3 id="cert-name"></h3>
+                <p>Doc: <span id="cert-doc"></span></p>
+                <p>Completo el curso de</p>
+                <h3>Estudios Epidemiologicos</h3>
+
+                <div class="certificate-details">
+                    <p>Modulos:</p>
+                    <ul>
+                        <li>Estudios Transversales</li>
+                        <li>Casos y Controles</li>
+                        <li>Estudios de Cohortes</li>
+                        <li>Ensayos Clinicos</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 16px; font-size: 0.8rem;">Fecha: <span id="cert-date"></span></p>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn" onclick="downloadPDF()">Descargar PDF</button>
+                <button class="btn btn-secondary" onclick="showScreen('screen-dashboard')">Volver</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ACCESS_CODE = "sanitas2024";
+
+        let userData = {
+            name: "",
+            document: "",
+            completedModules: [],
+            quizScores: {}
+        };
+
+        const modules = [
+            {
+                id: 1,
+                title: "Estudios Transversales",
+                videoId: "ZFT2izrof70",
+                quiz: [
+                    {
+                        question: "Cual es la medida de frecuencia caracteristica de los estudios transversales?",
+                        options: ["Incidencia", "Prevalencia", "Riesgo Relativo", "Odds Ratio"],
+                        correct: 1
+                    },
+                    {
+                        question: "Principal limitacion de los estudios transversales:",
+                        options: ["Son muy costosos", "No establecen temporalidad", "Solo enfermedades raras", "Muchos participantes"],
+                        correct: 1
+                    },
+                    {
+                        question: "Para prevalencias >10%, que medida se prefiere sobre el OR?",
+                        options: ["Riesgo Relativo", "Razon de Prevalencias", "Hazard Ratio", "Tasa de Incidencia"],
+                        correct: 1
+                    },
+                    {
+                        question: "Guia para reportar estudios observacionales:",
+                        options: ["CONSORT", "PRISMA", "STROBE", "MOOSE"],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Casos y Controles",
+                videoId: "A1UR6vDMpO0",
+                quiz: [
+                    {
+                        question: "Medida de asociacion en casos y controles:",
+                        options: ["Riesgo Relativo", "Razon de Prevalencias", "Odds Ratio", "Incidencia"],
+                        correct: 2
+                    },
+                    {
+                        question: "El OR aproxima al RR cuando:",
+                        options: ["Exposicion comun", "Enfermedad rara (<10%)", "Muchos controles", "Siempre"],
+                        correct: 1
+                    },
+                    {
+                        question: "Sesgo mas problematico en casos y controles:",
+                        options: ["Supervivencia", "Recuerdo", "Publicacion", "Tiempo inmortal"],
+                        correct: 1
+                    },
+                    {
+                        question: "Los participantes se seleccionan segun:",
+                        options: ["Estado de exposicion", "Estado de enfermedad", "Aleatoriamente", "Conveniencia"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Estudios de Cohortes",
+                videoId: "76GYAJ7NAjU",
+                quiz: [
+                    {
+                        question: "Medida de asociacion en cohortes:",
+                        options: ["Odds Ratio", "Razon Prevalencias", "Riesgo Relativo", "Chi cuadrado"],
+                        correct: 2
+                    },
+                    {
+                        question: "Cohorte que usa datos del pasado:",
+                        options: ["Prospectiva", "Retrospectiva", "Transversal", "Experimental"],
+                        correct: 1
+                    },
+                    {
+                        question: "Las cohortes permiten inferir causalidad por:",
+                        options: ["Prevalencia", "Temporalidad", "Numero controles", "Aleatorizacion"],
+                        correct: 1
+                    },
+                    {
+                        question: "Principal amenaza en cohortes:",
+                        options: ["Costo", "Perdidas al seguimiento", "Sesgo recuerdo", "Sin cegamiento"],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Ensayos Clinicos",
+                videoId: "R1tMfUvvrPI",
+                quiz: [
+                    {
+                        question: "Pacientes a tratar para prevenir un evento:",
+                        options: ["RRR", "ARR", "NNT", "OR"],
+                        correct: 2
+                    },
+                    {
+                        question: "El ocultamiento de asignacion previene:",
+                        options: ["Sesgo deteccion", "Sesgo seleccion", "Sesgo desercion", "Sesgo recuerdo"],
+                        correct: 1
+                    },
+                    {
+                        question: "Guia para reportar ensayos clinicos:",
+                        options: ["STROBE", "PRISMA", "CONSORT", "MOOSE"],
+                        correct: 2
+                    },
+                    {
+                        question: "La aleatorizacion es fundamental porque:",
+                        options: ["Reduce costos", "Distribuye confusores", "Mas participantes", "Facilita reclutamiento"],
+                        correct: 1
+                    }
+                ]
+            }
+        ];
+
+        let currentModule = null;
+        let currentQuizAnswers = {};
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function validateAccess() {
+            const code = document.getElementById('access-code').value;
+            if (code === ACCESS_CODE) {
+                showScreen('screen-register');
+                document.getElementById('login-error').textContent = '';
+            } else {
+                document.getElementById('login-error').textContent = 'Clave incorrecta';
+            }
+        }
+
+        function registerUser() {
+            const name = document.getElementById('user-name').value.trim();
+            const doc = document.getElementById('user-doc').value.trim();
+
+            if (!name || !doc) {
+                document.getElementById('register-error').textContent = 'Complete todos los campos';
+                return;
+            }
+
+            userData.name = name;
+            userData.document = doc;
+            document.getElementById('display-name').textContent = name.split(' ')[0];
+
+            renderDashboard();
+            showScreen('screen-dashboard');
+        }
+
+        function renderDashboard() {
+            const container = document.getElementById('modules-list');
+            container.innerHTML = '';
+
+            modules.forEach((module, index) => {
+                const isCompleted = userData.completedModules.includes(module.id);
+                const isLocked = index > 0 && !userData.completedModules.includes(modules[index - 1].id);
+                const isCurrent = !isCompleted && !isLocked;
+
+                let statusClass = 'status-pending';
+                let statusText = 'Pendiente';
+                let cardClass = '';
+
+                if (isCompleted) {
+                    statusClass = 'status-completed';
+                    statusText = 'Completado';
+                    cardClass = 'completed';
+                } else if (isCurrent) {
+                    statusClass = 'status-current';
+                    statusText = 'Disponible';
+                    cardClass = 'active';
+                } else if (isLocked) {
+                    cardClass = 'locked';
+                    statusText = 'Bloqueado';
+                }
+
+                container.innerHTML += `
+                    <div class="module-card ${cardClass}">
+                        <div class="module-header">
+                            <h3 class="module-title">${module.id}. ${module.title}</h3>
+                            <span class="module-status ${statusClass}">${statusText}</span>
+                        </div>
+                        <p class="module-desc">Video + Test (4 preguntas)</p>
+                        ${!isLocked ? `<button class="btn ${isCompleted ? 'btn-secondary' : ''}" onclick="openModule(${module.id})">
+                            ${isCompleted ? 'Repetir' : 'Iniciar'}
+                        </button>` : '<p style="color: #999; font-size: 0.85rem;">Complete el anterior</p>'}
+                    </div>
+                `;
+            });
+
+            const progress = (userData.completedModules.length / modules.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = userData.completedModules.length;
+
+            if (userData.completedModules.length === modules.length) {
+                document.getElementById('certificate-btn-container').style.display = 'block';
+            }
+        }
+
+        function openModule(moduleId) {
+            currentModule = modules.find(m => m.id === moduleId);
+            currentQuizAnswers = {};
+
+            const container = document.getElementById('module-content');
+
+            container.innerHTML = `
+                <h2 class="module-screen-title">${currentModule.id}. ${currentModule.title}</h2>
+
+                <div class="video-instruction">
+                    Vea el video completo antes del test
+                </div>
+
+                <div class="video-container" id="video-wrapper">
+                    <iframe
+                        id="youtube-player"
+                        src="https://www.youtube.com/embed/${currentModule.videoId}?rel=0&playsinline=1&enablejsapi=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="quiz-container" id="quiz-container">
+                    <h3>Test de Evaluacion</h3>
+                    ${renderQuiz()}
+                    <button class="btn" onclick="submitQuiz()" style="margin-top: 12px;">Enviar Respuestas</button>
+                </div>
+
+                <div id="quiz-result"></div>
+
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="backToDashboard()">Volver al Menu</button>
+                </div>
+            `;
+
+            showScreen('screen-module');
+        }
+
+        function renderQuiz() {
+            return currentModule.quiz.map((q, qIndex) => `
+                <div class="quiz-question">
+                    <h4>${qIndex + 1}. ${q.question}</h4>
+                    ${q.options.map((opt, oIndex) => `
+                        <div class="quiz-option" id="q${qIndex}-o${oIndex}" onclick="selectAnswer(${qIndex}, ${oIndex})">
+                            ${opt}
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+
+        function selectAnswer(questionIndex, optionIndex) {
+            document.querySelectorAll(`[id^="q${questionIndex}-o"]`).forEach(el => {
+                el.classList.remove('selected');
+            });
+            document.getElementById(`q${questionIndex}-o${optionIndex}`).classList.add('selected');
+            currentQuizAnswers[questionIndex] = optionIndex;
+        }
+
+        function submitQuiz() {
+            if (Object.keys(currentQuizAnswers).length < currentModule.quiz.length) {
+                alert('Responda todas las preguntas');
+                return;
+            }
+
+            let correct = 0;
+            currentModule.quiz.forEach((q, qIndex) => {
+                const userAnswer = currentQuizAnswers[qIndex];
+                const optionEl = document.getElementById(`q${qIndex}-o${userAnswer}`);
+
+                if (userAnswer === q.correct) {
+                    correct++;
+                    optionEl.classList.add('correct');
+                } else {
+                    optionEl.classList.add('incorrect');
+                    document.getElementById(`q${qIndex}-o${q.correct}`).classList.add('correct');
+                }
+            });
+
+            const score = (correct / currentModule.quiz.length) * 100;
+            const passed = score >= 75;
+
+            const resultContainer = document.getElementById('quiz-result');
+            resultContainer.innerHTML = `
+                <div class="quiz-result ${passed ? 'passed' : 'failed'}">
+                    <h3>${passed ? 'Aprobado!' : 'Intente de nuevo'}</h3>
+                    <p>${correct}/${currentModule.quiz.length} correctas (${score.toFixed(0)}%)</p>
+                    <p>${passed ? 'Modulo completado' : 'Necesita 75% para aprobar'}</p>
+                    ${!passed ? '<button class="btn btn-small" onclick="openModule('+currentModule.id+')" style="margin-top: 12px;">Reintentar</button>' : ''}
+                </div>
+            `;
+
+            document.querySelectorAll('.quiz-option').forEach(el => {
+                el.style.pointerEvents = 'none';
+            });
+
+            if (passed && !userData.completedModules.includes(currentModule.id)) {
+                userData.completedModules.push(currentModule.id);
+                userData.quizScores[currentModule.id] = score;
+            }
+
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function backToDashboard() {
+            renderDashboard();
+            showScreen('screen-dashboard');
+        }
+
+        function showCertificate() {
+            document.getElementById('cert-name').textContent = userData.name;
+            document.getElementById('cert-doc').textContent = userData.document;
+            document.getElementById('cert-date').textContent = new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            showScreen('screen-certificate');
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            const azul = [0, 51, 102];
+            const verde = [0, 161, 154];
+
+            doc.setDrawColor(...azul);
+            doc.setLineWidth(2);
+            doc.rect(10, 10, 277, 190);
+            doc.setLineWidth(0.5);
+            doc.rect(15, 15, 267, 180);
+
+            doc.setFontSize(14);
+            doc.setTextColor(...azul);
+            doc.text('FUNDACION UNIVERSITARIA SANITAS', 148.5, 35, { align: 'center' });
+
+            doc.setFontSize(28);
+            doc.setTextColor(...verde);
+            doc.text('CERTIFICADO DE CULMINACION', 148.5, 55, { align: 'center' });
+
+            doc.setFontSize(12);
+            doc.setTextColor(80, 80, 80);
+            doc.text('Se certifica que', 148.5, 75, { align: 'center' });
+
+            doc.setFontSize(24);
+            doc.setTextColor(...azul);
+            doc.text(userData.name, 148.5, 90, { align: 'center' });
+
+            doc.setFontSize(12);
+            doc.setTextColor(80, 80, 80);
+            doc.text('Documento: ' + userData.document, 148.5, 102, { align: 'center' });
+
+            doc.text('Ha completado satisfactoriamente el curso de', 148.5, 115, { align: 'center' });
+
+            doc.setFontSize(18);
+            doc.setTextColor(...verde);
+            doc.text('Estudios Epidemiologicos Observacionales', 148.5, 128, { align: 'center' });
+
+            doc.setFontSize(10);
+            doc.setTextColor(80, 80, 80);
+            doc.text('Modulos completados:', 148.5, 142, { align: 'center' });
+
+            const modulesList = [
+                'Estudios Transversales',
+                'Estudios de Casos y Controles',
+                'Estudios de Cohortes',
+                'Ensayos Clinicos Aleatorizados'
+            ];
+
+            modulesList.forEach((mod, i) => {
+                doc.text('- ' + mod, 100, 152 + (i * 6));
+            });
+
+            const fecha = new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            doc.setFontSize(10);
+            doc.text('Fecha de emision: ' + fecha, 148.5, 185, { align: 'center' });
+
+            doc.save('Certificado_' + userData.name.replace(/\s+/g, '_') + '.pdf');
+        }
+
+        // Enter key support
+        document.getElementById('access-code').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') validateAccess();
+        });
+
+        document.getElementById('user-name').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') document.getElementById('user-doc').focus();
+        });
+
+        document.getElementById('user-doc').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') registerUser();
+        });
+    </script>
+</body>
+</html>

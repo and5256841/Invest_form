@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Videos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 { color: #003366; text-align: center; }
+        .video-test {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .video-test h3 { color: #00A19A; margin-bottom: 10px; }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .info {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de Embedding de Videos</h1>
+
+    <div class="info">
+        <strong>Instrucciones:</strong> Si ves "Error 153" o el video no carga, debes habilitar el embedding en YouTube Studio.<br><br>
+        <strong>Como hacerlo:</strong><br>
+        1. Ve a <a href="https://studio.youtube.com" target="_blank">studio.youtube.com</a><br>
+        2. Click en "Contenido" (menu izquierdo)<br>
+        3. Click en el video<br>
+        4. Busca "Mostrar mas" > "Licencia" > Activa "Permitir insercion"
+    </div>
+
+    <div class="video-test">
+        <h3>1. Estudios Transversales (ZFT2izrof70)</h3>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/ZFT2izrof70" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="video-test">
+        <h3>2. Casos y Controles (A1UR6vDMpO0)</h3>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/A1UR6vDMpO0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="video-test">
+        <h3>3. Ensayos Clinicos (R1tMfUvvrPI)</h3>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/R1tMfUvvrPI" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="video-test">
+        <h3>4. Estudios de Cohortes (76GYAJ7NAjU)</h3>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/76GYAJ7NAjU" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="info" style="margin-top: 30px; background: #fff3e0; color: #e65100;">
+        <strong>Resultado esperado:</strong><br>
+        - Si los videos se reproducen = El embedding esta habilitado y la plataforma funcionara<br>
+        - Si ves Error 153 = Necesitas habilitar "Permitir insercion" en YouTube Studio
+    </div>
+</body>
+</html>
